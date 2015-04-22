@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+<h:body>
+ <h1>PrimeFaces idleMonitor example</h1>
+ 
+  <h:form>
+	<p:growl id="msg" showDetail="true" sticky="true" />
+ 
+	<!-- If idle 10 seconds, run 'idleDialog' -->
+	<p:idleMonitor timeout="10000" onidle="idleDialog.show()" />
+ 
+	<p:confirmDialog id="confirmDialog"
+		message="You have been idle for at least 10 seconds, 
+                            Please click ok to continue."
+		header="Are you there?" severity="alert" widgetVar="idleDialog">
+ 
+		<p:commandButton id="confirm" value="Ok" update="msg"
+			oncomplete="idleDialog.hide()"
+			actionListener="#{idleBean.welcomeListener}" />
+ 
+		<p:commandButton id="Logout" value="LogMeOut" update="msg"
+			oncomplete="idleDialog.hide()"
+			actionListener="#{idleBean.logoutListener}" />
+ 
+	</p:confirmDialog>
+ 
+  </h:form>
+ 
+</h:body>
+</html>

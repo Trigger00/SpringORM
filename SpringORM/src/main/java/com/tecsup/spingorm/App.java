@@ -1,8 +1,11 @@
 package com.tecsup.spingorm;
 
+
 import com.tecsup.spingorm.dao.ProgramaDAO;
 import com.tecsup.spingorm.model.Programa;
+
 import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,8 +16,27 @@ public class App {
 		// App.doSave(cntx);
 		// App.doDelete(cntx);
 		// App.doDelete(cntx);
-		App.doDelete(cntx);
+		//App.doDelete(cntx);
 		App.doList(cntx);
+	}
+
+	public List<Programa> createCars() {
+
+		ApplicationContext cntx1 = new ClassPathXmlApplicationContext("app.xml");
+		ProgramaDAO dao = (ProgramaDAO) cntx1.getBean("programaDAO");
+		List<Programa> list = dao.list();
+
+		/*
+		 * List<Car> list = new ArrayList<Car>(); for(int i = 0 ; i < size ;
+		 * i++) { list.add(new Car(getRandomId(), getRandomBrand(),
+		 * getRandomYear(), getRandomColor(), getRandomPrice(),
+		 * getRandomSoldState())); }
+		 */
+		for (Programa programa : list) {
+			System.out.println(programa.getNombre());
+		}
+
+		return list;
 	}
 
 	public static void doList(ApplicationContext cntx) {
@@ -34,7 +56,6 @@ public class App {
 		programa.setCodigo("9999");
 		programa.setDescripcion("Programa base de datos");
 		programa.setNombre("database");
-		
 
 		dao.save(programa);
 	}
