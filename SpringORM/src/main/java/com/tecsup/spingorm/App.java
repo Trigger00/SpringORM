@@ -17,7 +17,10 @@ public class App {
 		// App.doDelete(cntx);
 		// App.doDelete(cntx);
 		//App.doDelete(cntx);
-		App.doList(cntx);
+		
+		//App.doSave(cntx);
+		//App.doList(cntx);
+		App.doDelete(cntx);
 	}
 
 	public List<Programa> createCars() {
@@ -73,7 +76,8 @@ public class App {
 	public static void doDelete(ApplicationContext cntx) {
 		ProgramaDAO dao = (ProgramaDAO) cntx.getBean("programaDAO");
 		try {
-			dao.delete(4l);
+			dao.delete(9850l);
+			System.out.println("SALIO EL DELETE");
 		} catch (Exception e) {
 
 			System.out.println("No hallo el id");
